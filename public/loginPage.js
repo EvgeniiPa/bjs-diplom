@@ -3,11 +3,25 @@
 let userForm = new UserForm();
 
 userForm.loginFormCallback = function (data) {
-  if (ApiConnector.login.find(data)) {
-    userForm.loginFormCallback();
-    location.reload();
-    return ApiConnector.login;
-  }
+  ApiConnector.login(data, (property) => {
+    console.log(property);
 
-  throw new Error("такой пользователь не существует");
+    if (property.success == true) {
+      location.reload();
+    } else {
+      throw new Error("Ошибка авторизации.");
+    }
+  });
+};
+
+userForm.registerFormCallback = function (data) {
+  ApiConnector.login(data, (property) => {
+    console.log(property);
+
+    if (property.success == true) {
+      location.reload();
+    } else {
+      throw new Error("Ошибка регистрации.");
+    }
+  });
 };
