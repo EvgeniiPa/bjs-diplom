@@ -4,24 +4,20 @@ let userForm = new UserForm();
 
 userForm.loginFormCallback = function (data) {
   ApiConnector.login(data, (property) => {
-    console.log(property);
-
     if (property.success == true) {
       location.reload();
     } else {
-      throw new Error("Ошибка авторизации.");
+      this.setLoginErrorMessage(property.error);
     }
   });
 };
 
 userForm.registerFormCallback = function (data) {
-  ApiConnector.login(data, (property) => {
-    console.log(property);
-
+  ApiConnector.register(data, (property) => {
     if (property.success == true) {
       location.reload();
     } else {
-      throw new Error("Ошибка регистрации.");
+      this.setLoginErrorMessage(property.error);
     }
   });
 };
