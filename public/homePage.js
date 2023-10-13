@@ -43,9 +43,10 @@ moneyManager.addMoneyCallback = function (data) {
     if (result.success) {
       ProfileWidget.showProfile(result.data);
       moneyManager.setMessage(result.success, "успешно");
+    } else {
+      moneyManager.setMessage(result.success, result.error);
+      console.log(result.error);
     }
-    moneyManager.setMessage(result.success, result.error);
-    console.log(result);
   });
 };
 
@@ -54,8 +55,9 @@ moneyManager.conversionMoneyCallback = function (data) {
     if (result.success) {
       ProfileWidget.showProfile(result.data);
       moneyManager.setMessage(result.success, "успешно");
+    } else {
+      moneyManager.setMessage(result.success, result.error);
     }
-    moneyManager.setMessage(result.success, result.error);
   });
 };
 
@@ -64,8 +66,9 @@ moneyManager.sendMoneyCallback = function (data) {
     if (result.success) {
       ProfileWidget.showProfile(result.data);
       moneyManager.setMessage(result.success, "успешно");
+    } else {
+      moneyManager.setMessage(result.success, result.error);
     }
-    moneyManager.setMessage(result.success, result.error);
   });
 };
 
@@ -86,8 +89,9 @@ favoritesWidget.addUserCallback = function (date) {
       favoritesWidget.clearTable();
       favoritesWidget.fillTable(result.data);
       moneyManager.updateUsersList(result.data);
+    } else {
+      favoritesWidget.setMessage(result.success, result.error);
     }
-    favoritesWidget.setMessage(result.success, result.error);
   });
 };
 
@@ -98,8 +102,9 @@ favoritesWidget.removeUserCallback = function (data) {
       favoritesWidget.fillTable(result.data);
       moneyManager.updateUsersList(result.data);
       favoritesWidget.setMessage(result.success, "успешно");
+    } else {
+      favoritesWidget.setMessage(result.error);
     }
-    favoritesWidget.setMessage(result.error);
   });
 };
 
